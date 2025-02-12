@@ -6,6 +6,7 @@ This project implements a Tic-Tac-Toe game played between two AI agents, powered
 - [Overview](#overview)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
+- [Sample Output](#sample-output)
 - [Usage](#usage)
 - [Game Features](#game-features)
 - [AI Players](#ai-players)
