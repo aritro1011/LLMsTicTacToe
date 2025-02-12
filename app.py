@@ -16,12 +16,15 @@ def toss():
 
 # Function to log game results to a CSV file
 def log_result(result):
-    file_exists = os.path.isfile('game_results.csv')
-    with open('game_results.csv', mode='a', newline='') as file:
-        writer = csv.writer(file)
-        if not file_exists:
-            writer.writerow(['Llama_Win', 'Gemini_Win', 'Tie', 'Total_Moves', 'First_Player', 'First_Move_Position', 'Move_Sequence', 'GeminiTemperature', 'LlamaTemperature'])
-        writer.writerow(result)
+    try:
+        file_exists = os.path.isfile('game_results.csv')
+        with open('game_results.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+            if not file_exists:
+                writer.writerow(['Llama_Win', 'Gemini_Win', 'Tie', 'Total_Moves', 'First_Player', 'First_Move_Position', 'Move_Sequence', 'GeminiTemperature', 'LlamaTemperature'])
+            writer.writerow(result)
+    except IOError as e:
+        print(f"Error writing to file: {e}")
 
 # Function to analyze the first move position (corner, center, edge)
 def analyze_opening_move(move):
@@ -37,6 +40,7 @@ def play_game(log_results):
     board = initialize_board()
     current_player, player_x_func, player_o_func, player_x_name, player_o_name = toss()  # Perform the toss
     first_move = None
+    first_player = player_x_name  # Store the first player at the start
     move_sequence = []  # To track the sequence of moves
     gemini_temp = 0.0  # Store Gemini temperature
     llama_temp = 0.0  # Store Llama temperature
@@ -50,16 +54,24 @@ def play_game(log_results):
 
         if current_player == 'X':
             ai_move, gemini_temp = player_x_func(board)  # Get Player X's move
+            if ai_move is None:
+                print("Invalid move by Gemini AI. Retrying.")
+                continue
+            ai_move = int(ai_move)
             print(f"Player {current_player} ({player_x_name}) chose position {ai_move}")
-            board[int(ai_move) - 1] = current_player
+            board[ai_move - 1] = current_player
         else:
             ai_move, llama_temp = player_o_func(board)  # Get Player O's move
+            if ai_move is None:
+                print("Invalid move by Llama AI. Retrying.")
+                continue
+            ai_move = int(ai_move)
             print(f"Player {current_player} ({player_o_name}) chose position {ai_move}")
-            board[int(ai_move) - 1] = current_player
+            board[ai_move - 1] = current_player
 
         # Record the first move
         if first_move is None:
-            first_move = int(ai_move)
+            first_move = ai_move
             opening_move_position = analyze_opening_move(first_move)
 
         move_sequence.append(ai_move)
@@ -73,7 +85,7 @@ def play_game(log_results):
             # Log result if enabled
             total_moves = len(move_sequence)
             if log_results:
-                result = [0, 0, 0, total_moves, player_x_name if current_player == 'X' else player_o_name, opening_move_position, '-'.join(map(str, move_sequence)), gemini_temp, llama_temp]
+                result = [0, 0, 0, total_moves, first_player, opening_move_position, '-'.join(map(str, move_sequence)), gemini_temp, llama_temp]
                 if winner == 'Llama AI':
                     result[0] = 1  # Llama win
                 else:
@@ -89,7 +101,7 @@ def play_game(log_results):
             # Log tie if enabled
             total_moves = len(move_sequence)
             if log_results:
-                result = [0, 0, 1, total_moves, player_x_name if current_player == 'X' else player_o_name, opening_move_position, '-'.join(map(str, move_sequence)), gemini_temp, llama_temp]  # Tie
+                result = [0, 0, 1, total_moves, first_player, opening_move_position, '-'.join(map(str, move_sequence)), gemini_temp, llama_temp]  # Tie
                 log_result(result)
             break
 
@@ -99,5 +111,7 @@ def play_game(log_results):
 # Start the game
 if __name__ == "__main__":
     log_choice = input("Do you want to log the game results? (yes/no): ").strip().lower()
+    while log_choice not in ['yes', 'no']:
+        log_choice = input("Invalid input. Please enter 'yes' or 'no': ").strip().lower()
     log_results = log_choice == 'yes'
     play_game(log_results)
