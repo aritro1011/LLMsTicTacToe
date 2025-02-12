@@ -9,3 +9,5 @@ Llama_Win,Gemini_Win,Tie,Total_Moves,First_Player,First_Move_Position,Move_Seque
 1,0,0,8,Llama AI,Center,5-9-1-3-2-4-7-6,0.2,0.2
 0,0,1,9,Gemini AI,Center,5-9-1-3-7-8-2-4-6,0.2,0.2
 0,1,0,8,Gemini AI,Center,5-9-7-1-8-3-4-2,0.2,0.2
+0,1,0,8,Gemini AI,Center,5-9-7-1-8-3-4-2,0.2,0.2
+0,1,0,8,Gemini AI,Center,5-9-7-1-8-3-4-2,0.2,0.2
