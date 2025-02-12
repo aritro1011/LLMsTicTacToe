@@ -1,6 +1,7 @@
 # LLM-Based Tic-Tac-Toe
 
-This project implements a Tic-Tac-Toe game played between two AI agents, powered by two large language models (LLMs): Google Gemini and Llama 3 from Groq. The AI agents play against each other with the goal of winning based on their strategic decisions. The game also includes functionality to log game results to a CSV file.
+This project implements a Tic-Tac-Toe game played between two AI agents, powered by two large language models (LLMs): Google Gemini and Llama 3 from Groq. The AI agents play against each other with the goal of winning based on their strategic decisions. The game also includes functionality to log game results to a CSV file.  
+here is a analysis and visualization dashboard on the basis of ten games played by the agents: https://claude.site/artifacts/c226ec3d-a234-4451-9243-8cd4295ab3db
 
 ## Table of Contents
 - [Overview](#overview)
