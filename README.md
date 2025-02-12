@@ -11,7 +11,7 @@ This project implements a Tic-Tac-Toe game played between two AI agents, powered
 - [AI Players](#ai-players)
 - [Logging Results](#logging-results)
 - [Requirements](#requirements)
-- [License](#license)
+
 
 ## Overview
 
@@ -21,6 +21,120 @@ This project is an interactive Tic-Tac-Toe game in which two AI players take tur
 - Llama 3 AI (Powered by Groq)
 
 The game records detailed game results such as moves, temperatures, and game outcomes, storing this data in a CSV file for analysis.
+
+
+
+## Sample Output
+
+Here's an example of how a game plays out:
+
+> **Game Initialization:**
+```
+Do you want to log the game results? (yes/no): yes
+Llama AI wins the toss and will start as Player X.
+```
+
+### Initial Board:
+```
+  |   |  
+---------
+  |   |  
+---------
+  |   |  
+```
+**Filled positions:** `[]`
+
+### Move 1 - Player X (Llama AI)
+*Chose position 5*
+```
+  |   |  
+---------
+  | X |  
+---------
+  |   |  
+```
+**Filled positions:** `[5]`
+
+### Move 2 - Player O (Gemini AI)
+*Chose position 9*
+```
+  |   |  
+---------
+  | X |  
+---------
+  |   | O
+```
+**Filled positions:** `[5, 9]`
+
+### Move 3 - Player X (Llama AI)
+*Chose position 7*
+```
+  |   |  
+---------
+  | X |  
+---------
+X |   | O
+```
+**Filled positions:** `[5, 7, 9]`
+
+### Move 4 - Player O (Gemini AI)
+*Chose position 1*
+```
+O |   |  
+---------
+  | X |  
+---------
+X |   | O
+```
+**Filled positions:** `[1, 5, 7, 9]`
+
+### Move 5 - Player X (Llama AI)
+*Chose position 8*
+```
+O |   |  
+---------
+  | X |  
+---------
+X | X | O
+```
+**Filled positions:** `[1, 5, 7, 8, 9]`
+
+### Move 6 - Player O (Gemini AI)
+*Chose position 3*
+```
+O |   | O
+---------
+  | X |  
+---------
+X | X | O
+```
+**Filled positions:** `[1, 3, 5, 7, 8, 9]`
+
+### Move 7 - Player X (Llama AI)
+*Chose position 4*
+```
+O |   | O
+---------
+X | X |  
+---------
+X | X | O
+```
+**Filled positions:** `[1, 3, 4, 5, 7, 8, 9]`
+
+### Move 8 - Player O (Gemini AI)
+*Chose position 2*
+```
+O | O | O
+---------
+X | X |  
+---------
+X | X | O
+```
+
+### Game Result
+**🏆 Player O (Gemini AI) wins!**
+
+
 
 ## Installation
 
