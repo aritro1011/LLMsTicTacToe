@@ -35,7 +35,7 @@ def analyze_opening_move(move):
     else:  # edges
         return "Edge"
 
-# Function to play the game
+# Function to play a single game
 def play_game(log_results):
     board = initialize_board()
     current_player, player_x_func, player_o_func, player_x_name, player_o_name = toss()  # Perform the toss
@@ -114,4 +114,16 @@ if __name__ == "__main__":
     while log_choice not in ['yes', 'no']:
         log_choice = input("Invalid input. Please enter 'yes' or 'no': ").strip().lower()
     log_results = log_choice == 'yes'
-    play_game(log_results)
+
+    # Ask for the number of matches after logging choice
+    num_matches = input("How many matches would you like the agents to play one after another? (Enter a number): ").strip()
+    while not num_matches.isdigit() or int(num_matches) <= 0:
+        num_matches = input("Invalid input. Please enter a positive number: ").strip()
+    
+    num_matches = int(num_matches)
+
+    # Loop through the specified number of matches
+    for match in range(num_matches):
+        print(f"\n--- Match {match + 1} ---")
+        play_game(log_results)
+    print(f"Completed {num_matches} matches.")
