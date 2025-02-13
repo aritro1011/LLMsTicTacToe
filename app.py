@@ -58,6 +58,9 @@ def play_game(log_results):
                 print("Invalid move by Gemini AI. Retrying.")
                 continue
             ai_move = int(ai_move)
+            if ai_move == 0:
+                print("LLM error: move returned 0 by Gemini AI. Retrying.")
+                continue
             print(f"Player {current_player} ({player_x_name}) chose position {ai_move}")
             board[ai_move - 1] = current_player
         else:
@@ -66,10 +69,13 @@ def play_game(log_results):
                 print("Invalid move by Llama AI. Retrying.")
                 continue
             ai_move = int(ai_move)
+            if ai_move == 0:
+                print("LLM error: move returned 0 by Llama AI. Retrying.")
+                continue
             print(f"Player {current_player} ({player_o_name}) chose position {ai_move}")
             board[ai_move - 1] = current_player
 
-        # Record the first move
+        # Record the first move if not already recorded
         if first_move is None:
             first_move = ai_move
             opening_move_position = analyze_opening_move(first_move)
@@ -101,7 +107,7 @@ def play_game(log_results):
             # Log tie if enabled
             total_moves = len(move_sequence)
             if log_results:
-                result = [0, 0, 1, total_moves, first_player, opening_move_position, '-'.join(map(str, move_sequence)), gemini_temp, llama_temp]  # Tie
+                result = [0, 0, 1, total_moves, first_player, opening_move_position, '-'.join(map(str, move_sequence)), gemini_temp, llama_temp]
                 log_result(result)
             break
 
