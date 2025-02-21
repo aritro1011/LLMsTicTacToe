@@ -27,7 +27,7 @@ The game records detailed game results such as moves, temperatures, and game out
 
 
 ## Data Analysis & Visualization
-**Dashboard**
+**Dashboard:**
 ![Power BI Dashboard](https://github.com/aritro1011/LLMsTicTacToe/blob/main/PowerBiDashboardLLMsTicTacToe.jpg)
 
 ## Sample Output
