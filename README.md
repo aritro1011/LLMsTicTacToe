@@ -26,6 +26,9 @@ This project is an interactive Tic-Tac-Toe game in which two AI players take tur
 The game records detailed game results such as moves, temperatures, and game outcomes, storing this data in a CSV file for analysis.
 
 
+## Data Analysis & Visualization
+**Dashboard**
+![Power BI Dashboard](https://github.com/aritro1011/LLMsTicTacToe/blob/main/PowerBiDashboardLLMsTicTacToe.jpg)
 
 ## Sample Output
 
